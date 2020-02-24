@@ -25,7 +25,7 @@ class Airplane {
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
-*/
+*/        
 
 /*
   TASK 1
@@ -41,7 +41,27 @@ class Airplane {
 */
 
 class Person {
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  eat(edible){
+  
+    if (this.stomach.length < 10){
+      this.stomach.push(edible);
+    } else{
+      return `You can't eat anymore of this!`
+    }
+  }
+  poop(){
+    this.stomach.splice(0,this.stomach.length);
+  }
+  
 
+  toString(){
+    return `${this.name}, ${this.age} `
+  }
 }
 
 /*
@@ -59,8 +79,29 @@ class Person {
 */
 
 class Car {
+  constructor(model, milesPerGallon){
+    this.tank = 0;
+    this.odometer = 0;
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+  }
 
+  fill(gallons){
+     this.tank += gallons;
+    }
+  drive(distance) {
+    let empty = this.tank * this.milesPerGallon;
+    if (distance < empty) {
+      this.odometer += distance;
+      this.tank -= distance / this.milesPerGallon;
+    } else {
+      this.odometer += empty;
+      this.tank -= empty / this.milesPerGallon;
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+  }
 }
+
 
 /*
   TASK 3
@@ -75,7 +116,15 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
+  constructor(demog){
+    this.name = demog.name;
+    this.age = demog.age;
+    this.location = demog.location;
 
+  }
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}.`
+  }
 }
 
 /*
@@ -92,7 +141,13 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian{
+  constructor(attributes){
+    super(attributes);
+    this.specialty = attributes.specialty;
+    this.favLanguage = attributes.favLanguage;
+    this.catchPhrase = attributes.catchPhrase;
+  }
 
 }
 
